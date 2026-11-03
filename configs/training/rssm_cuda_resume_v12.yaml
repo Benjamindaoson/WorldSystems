@@ -1,0 +1,10 @@
+repository: ../WorldDynamics
+dataset: ../WorldDynamics/artifacts/v11-mujoco-32scene-h32
+architecture_weights: ../WorldDynamics/artifacts/v11-baselines-815387b/rssm-s17/best.pt
+family: rssm
+run_dir: results/v12/rssm-gpu-resume-s17
+device: cuda
+seed: 17
+epochs: 2
+batch_size: 7
+learning_rate: 0.001

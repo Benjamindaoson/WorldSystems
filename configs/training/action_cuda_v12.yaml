@@ -1,0 +1,10 @@
+repository: ../WorldDynamics
+dataset: ../WorldDynamics/artifacts/v11-mujoco-32scene-h32
+architecture_weights: ../WorldDynamics/artifacts/v11-baselines-fair/conditioned-s17/best.pt
+family: action_predictor
+run_dir: results/v12/action-gpu-s17
+device: cuda
+seed: 17
+epochs: 2
+batch_size: 7
+learning_rate: 0.001

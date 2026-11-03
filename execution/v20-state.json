@@ -1,0 +1,113 @@
+{
+  "schema": "worldsystems-execution-v20-1",
+  "overall": "IN_PROGRESS",
+  "complete": false,
+  "git_commit": "f849eae0298e146a6976ffef14aae49ff3328d98",
+  "validation": {
+    "cuda_suite": "21 passed",
+    "cpu_suite": "17 passed, 4 skipped",
+    "ruff": "passed",
+    "warning": "upstream Starlette httpx deprecation"
+  },
+  "branch": "feat/v20-systems-research",
+  "remote_pushed": false,
+  "phases": [
+    {
+      "phase": 0,
+      "status": "TESTED",
+      "detail": "39 historical hashes verified; source drift and serving lifecycle fixed"
+    },
+    {
+      "phase": 1,
+      "status": "GPU_VERIFIED",
+      "detail": "Full deterministic free rollout capture; partial graph and exhaustive timing pending"
+    },
+    {
+      "phase": 2,
+      "status": "BLOCKED",
+      "detail": "Both real model Inductor executions fail: working Triton absent"
+    },
+    {
+      "phase": 3,
+      "status": "GPU_VERIFIED",
+      "detail": "RSSM/ActionPredictor 200 steps each; formal VideoFlow training pending"
+    },
+    {
+      "phase": 4,
+      "status": "IMPLEMENTED",
+      "detail": "Inference horizons 4/8/16/32 measured; video/training matrix pending"
+    },
+    {
+      "phase": 5,
+      "status": "GPU_VERIFIED",
+      "detail": "Resident recurrent sessions tested; HTTP/video streaming integration pending"
+    },
+    {
+      "phase": 6,
+      "status": "IMPLEMENTED",
+      "detail": "Existing service race/body-limit fixes tested; queued scheduler pending"
+    },
+    {
+      "phase": 7,
+      "status": "NOT_RUN",
+      "detail": "Dynamic batching and bounded queue not implemented"
+    },
+    {
+      "phase": 8,
+      "status": "NOT_RUN",
+      "detail": "V1.2 RSSM recovery inherited; V2 VideoFlow recovery pending"
+    },
+    {
+      "phase": 9,
+      "status": "NOT_RUN",
+      "detail": "V1.1 CPU Gloo inherited; FSDP2/DeepSpeed implementation pending"
+    },
+    {
+      "phase": 10,
+      "status": "BLOCKED",
+      "detail": "Only one local GPU; no compatible multi-GPU runner authorized/available"
+    },
+    {
+      "phase": 11,
+      "status": "IMPLEMENTED",
+      "detail": "RSSM pinned source; remaining visual families pending"
+    },
+    {
+      "phase": 12,
+      "status": "IMPLEMENTED",
+      "detail": "V1.2 ACT inherited; FetchPush/Diffusion integration pending"
+    },
+    {
+      "phase": 13,
+      "status": "NOT_RUN",
+      "detail": "Registry not implemented"
+    },
+    {
+      "phase": 14,
+      "status": "NOT_RUN",
+      "detail": "Research question identified; related work, novelty and ablations pending"
+    },
+    {
+      "phase": 15,
+      "status": "IMPLEMENTED",
+      "detail": "Raw graph/training evidence and resume state; full benchmark suite pending"
+    }
+  ],
+  "next_command": ".\\.venv-cuda\\Scripts\\python.exe -m pytest tests/test_v20_graph.py tests/test_v20_streaming.py -q",
+  "next_implementation": "Add bounded deadline-aware queue to RSSM HTTP service; integrate RSSMStreaming; run 1/2/4/8/16-client CPU/GPU benchmarks. Then formal VideoFlow training and cross-process recovery.",
+  "constraints": [
+    "write only WorldSystems",
+    "never overwrite V1/V1.1/V1.2 evidence",
+    "no driver/WSL/global environment changes",
+    "GPU timings exploratory: exclusive ownership not established"
+  ],
+  "completed_commands": [
+    "scripts/audit_v12_evidence.py",
+    "scripts/audit_graph_v20.py --output results/v20/graph-audit-pinned-02 --runs 100",
+    "scripts/compile_v20.py",
+    "scripts/train_v20.py"
+  ],
+  "rerun_rule": "Audit/compile/training scripts refuse existing output paths; choose a new versioned path before rerunning.",
+  "publication_authorized": true,
+  "publication_scope": "first public source snapshot; external artifacts excluded"
+}

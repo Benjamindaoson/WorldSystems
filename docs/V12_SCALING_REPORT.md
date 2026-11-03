@@ -1,0 +1,3 @@
+# Scaling and quality scope
+
+Status: **NOT_RUN** for a controlled model-size/context/resolution matrix and multi-GPU scaling. The executed physical-state RSSM and ActionPredictor each use one width, batch and horizon; VideoFlow has only a two-step short-horizon smoke test. No scaling law, scaling efficiency, or training-stability conclusion follows. Future matrix: RSSM batch 1/4/8, horizon 8/16/32, width 32/64, fixed train/validation/test split, FP32; measure synchronized step phase times, peak allocated/reserved VRAM, validation and test free-running horizon curves. Run each cell with a separate immutable configuration and raw report. Multi-GPU DDP/FSDP2/ZeRO comparisons need a separate compatible Linux CUDA system and equal global batch.

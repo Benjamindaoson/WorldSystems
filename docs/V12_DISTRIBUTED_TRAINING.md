@@ -1,0 +1,3 @@
+# Distributed training status
+
+Status: **CPU_VERIFIED** for the preserved V1.1 two-process Gloo DDP path. `DistributedSampler`, rank initialization, all-reduced training metric, rank-zero checkpoint and barrier are implemented in `distributed.py`. V1.2 has not run a new real-model DDP parity/recovery test. Only one GTX 1650 is present, so multi-GPU DDP scaling is **BLOCKED**. FSDP2 `fully_shard`, DeviceMesh checkpoint/resume, and DeepSpeed ZeRO-2/3 are **NOT_IMPLEMENTED**; there is no claim of multi-GPU verification. A Linux multi-GPU experiment requires a compatible PyTorch+CUDA/Triton/DeepSpeed environment and at least two GPUs, with fixed model, data, effective batch and precision across methods before measuring throughput and memory.

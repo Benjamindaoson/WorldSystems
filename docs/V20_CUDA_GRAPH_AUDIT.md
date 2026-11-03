@@ -1,0 +1,12 @@
+# Full RSSM graph audit — GPU_VERIFIED, exploratory performance
+
+Command: `.venv-cuda/Scripts/python.exe scripts/audit_graph_v20.py --output results/v20/graph-audit-pinned-02 --runs 100`.
+Checkpoint `da5238546a46e6e763efd8c07fef0fcbb6c55fb6461681407ee3e5d5ed348f57`; source revision `815387b5cbb0fcc39a258cafd39550d42b777f79`; dataset manifest `83576fe2cf07df02f7df318f4d9fb5089e2f8f17270d0b50e121d16ba01b874d`.
+
+Exact failure: PyTorch 2.5.1 `torch/distributions/distribution.py:70`, `if not valid.all()`, performs device-to-host scalar conversion during capture. Isolated Normal construction reproduces `operation not permitted when stream is capturing`; capture_end then hides it behind a previous-error message. Complete exception chain is saved in `normal-probe/failure.txt`.
+
+`capture_ready_model` deep-copies the eval model and changes only Normal argument validation. It retains encoder, posterior, all prior/scale arithmetic, recurrent updates, decoder and forward output. Parameter finiteness is checked before capture; request and result finiteness are checked outside capture. This supports deterministic eval free rollout, not stochastic training Graph. It intentionally changes invalid intermediate parameter handling; nonfinite output is rejected. Safe partial Graph is still NOT_IMPLEMENTED.
+
+Five separate paths run 100 rotated-order samples each at (batch,horizon)=(1,4),(2,8),(1,16),(1,32). Inputs are frozen test trajectories; three perturbed-state/action seeds per cell verify outputs within 1e-6. Graph calls include same-device input copy, validation, replay and output clone. Outputs are cloned to prevent later replays mutating earlier results. CUDA events span host launch gaps and are not summed kernel durations. CSV separately records launch, sync wait, device-to-host readback and total call boundaries. Input-copy-only timing, warmup cost and partial Graph remain to be added.
+
+At batch 1/horizon32: original eager P50 39.943 ms; full arithmetic without internal validation eager 29.144 ms; fast eager 22.027 ms; full Graph 2.265 ms; fast Graph 2.067 ms. These are model calls, not HTTP. Full Graph and fast Graph have different arithmetic. GPU exclusivity was not established (desktop processes present, initial utilization 26%); all performance is exploratory. First audit using changed external source remains preserved in `graph-audit-01`; pinned run is authoritative for provenance. No novelty claim follows from standard CUDA Graph capture.

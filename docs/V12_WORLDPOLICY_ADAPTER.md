@@ -1,0 +1,5 @@
+# WorldPolicy ACT inference adapter
+
+Status: **CPU_VERIFIED**. `ACTPolicyAdapter` reads only the trusted WorldPolicy repository and verifies the checkpoint SHA256 against its training record before loading. The ACT checkpoint bundles NumPy/Python RNG tuples; PyTorch 2.5 `weights_only=True` rejects it. This adapter uses `weights_only=False` only after verifying the exact local hash and path; do not use it for arbitrary external checkpoints. Source commit `06c6c19b050ee978ffcb08e8d90a0fa970896325`, checkpoint SHA `cc3683b97b3023115dd379b4b071657110194a6f9d16a750196d68b5c9ae8569`.
+
+Input: finite `[B,8]` state; output: `[B,4,2]` normalized action chunk, timestamp and deadline-checked latency. No actuator control is exposed. Zero-state inference succeeded; after 10 warmups and 100 CPU calls, P50/P95/P99 `0.991/1.284/1.498 ms`. This is an isolated policy compute benchmark, not robot end-to-end latency. Raw: `results/v12/policy-act-cpu.json`. Diffusion Policy and dynamics ensemble adapters: **NOT_IMPLEMENTED**.

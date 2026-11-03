@@ -1,0 +1,197 @@
+{
+  "schema": "worldsystems-public-evidence-v1",
+  "development_commit": "10aeddf",
+  "validated_implementation": "f849eae",
+  "training": [
+    {
+      "family": "rssm",
+      "optimizer_steps": 200,
+      "source_commit": "815387b5cbb0fcc39a258cafd39550d42b777f79",
+      "source_sha256": "e05ebd9ed666d97527a3777361d7f5d6c8eaca75b72569e41c97add4a6b17679",
+      "dataset_manifest_sha256": "83576fe2cf07df02f7df318f4d9fb5089e2f8f17270d0b50e121d16ba01b874d",
+      "checkpoint_sha256": "18981086a7201470b85162fd7976c504b19d316d3829195e434053c3aed0da3b",
+      "free_running_mse": 0.008305173367261887,
+      "raw_report": {
+        "artifact_id": "v20/training-01/rssm/report.json",
+        "sha256": "0aa1341381b2a8969f0985cefb5407dc32d69348173455b4dcd11b7e7ed3c4b8"
+      }
+    },
+    {
+      "family": "action_predictor",
+      "optimizer_steps": 200,
+      "source_commit": "b128f8cbd674d57effcf4f810626c550750b94b5",
+      "source_sha256": "0cc62a0f16c0c870bf417733424c484fe8898b8a93d3d645f9e4fccc39983ef9",
+      "dataset_manifest_sha256": "83576fe2cf07df02f7df318f4d9fb5089e2f8f17270d0b50e121d16ba01b874d",
+      "checkpoint_sha256": "e33e49318130acc36abe3c3381e6a28e8d86b5220fe11877c5ed73987f9aa5dd",
+      "free_running_mse": 0.003717204788699746,
+      "raw_report": {
+        "artifact_id": "v20/training-01/action_predictor/report.json",
+        "sha256": "6f8272154108cb6c97ec194a3b66ec4541e56780be0a7038d4668384ed2614a6"
+      }
+    }
+  ],
+  "graph": {
+    "checkpoint_sha256": "da5238546a46e6e763efd8c07fef0fcbb6c55fb6461681407ee3e5d5ed348f57",
+    "dataset_sha256": "83576fe2cf07df02f7df318f4d9fb5089e2f8f17270d0b50e121d16ba01b874d",
+    "source_sha256": "e05ebd9ed666d97527a3777361d7f5d6c8eaca75b72569e41c97add4a6b17679",
+    "torch": "2.5.1+cu118",
+    "cuda": "11.8",
+    "scope": "MODEL_CALL",
+    "performance_status": "exploratory; exclusive GPU ownership not established",
+    "summary": [
+      {
+        "batch": 1,
+        "horizon": 4,
+        "method": "original_eager",
+        "p50_ms": 4.853299999922456,
+        "event_p50_ms": 4.796687841415405
+      },
+      {
+        "batch": 1,
+        "horizon": 4,
+        "method": "full_unchecked_eager",
+        "p50_ms": 3.349550000166346,
+        "event_p50_ms": 3.2963520288467407
+      },
+      {
+        "batch": 1,
+        "horizon": 4,
+        "method": "fast_eager",
+        "p50_ms": 2.6983499992638826,
+        "event_p50_ms": 2.6127039194107056
+      },
+      {
+        "batch": 1,
+        "horizon": 4,
+        "method": "full_graph",
+        "p50_ms": 1.045499999236199,
+        "event_p50_ms": 0.9786719977855682
+      },
+      {
+        "batch": 1,
+        "horizon": 4,
+        "method": "fast_graph",
+        "p50_ms": 0.9840499997153529,
+        "event_p50_ms": 0.9292640089988708
+      },
+      {
+        "batch": 2,
+        "horizon": 8,
+        "method": "original_eager",
+        "p50_ms": 8.64844999887282,
+        "event_p50_ms": 8.588016033172607
+      },
+      {
+        "batch": 2,
+        "horizon": 8,
+        "method": "full_unchecked_eager",
+        "p50_ms": 5.860799999936717,
+        "event_p50_ms": 5.802255868911743
+      },
+      {
+        "batch": 2,
+        "horizon": 8,
+        "method": "fast_eager",
+        "p50_ms": 4.632249999303895,
+        "event_p50_ms": 4.571104049682617
+      },
+      {
+        "batch": 2,
+        "horizon": 8,
+        "method": "full_graph",
+        "p50_ms": 1.2059999999110005,
+        "event_p50_ms": 1.1369760036468506
+      },
+      {
+        "batch": 2,
+        "horizon": 8,
+        "method": "fast_graph",
+        "p50_ms": 1.1106500005553244,
+        "event_p50_ms": 1.054207980632782
+      },
+      {
+        "batch": 1,
+        "horizon": 16,
+        "method": "original_eager",
+        "p50_ms": 16.24589999937598,
+        "event_p50_ms": 16.18953514099121
+      },
+      {
+        "batch": 1,
+        "horizon": 16,
+        "method": "full_unchecked_eager",
+        "p50_ms": 11.44430000022112,
+        "event_p50_ms": 11.386544227600098
+      },
+      {
+        "batch": 1,
+        "horizon": 16,
+        "method": "fast_eager",
+        "p50_ms": 9.11675000043033,
+        "event_p50_ms": 9.039968013763428
+      },
+      {
+        "batch": 1,
+        "horizon": 16,
+        "method": "full_graph",
+        "p50_ms": 1.5343000004577334,
+        "event_p50_ms": 1.4607200026512146
+      },
+      {
+        "batch": 1,
+        "horizon": 16,
+        "method": "fast_graph",
+        "p50_ms": 1.419549999809533,
+        "event_p50_ms": 1.363919973373413
+      },
+      {
+        "batch": 1,
+        "horizon": 32,
+        "method": "original_eager",
+        "p50_ms": 39.94274999968184,
+        "event_p50_ms": 39.86964797973633
+      },
+      {
+        "batch": 1,
+        "horizon": 32,
+        "method": "full_unchecked_eager",
+        "p50_ms": 29.1440999999395,
+        "event_p50_ms": 29.074399948120117
+      },
+      {
+        "batch": 1,
+        "horizon": 32,
+        "method": "fast_eager",
+        "p50_ms": 22.02679999936663,
+        "event_p50_ms": 21.96396827697754
+      },
+      {
+        "batch": 1,
+        "horizon": 32,
+        "method": "full_graph",
+        "p50_ms": 2.2647999994660495,
+        "event_p50_ms": 2.1957119703292847
+      },
+      {
+        "batch": 1,
+        "horizon": 32,
+        "method": "fast_graph",
+        "p50_ms": 2.0670000003519817,
+        "event_p50_ms": 1.9995360374450684
+      }
+    ],
+    "raw_report": {
+      "artifact_id": "v20/graph-audit-pinned-02/report.json",
+      "sha256": "27ebad25d4d39b0f2314894379208f556ab7fdd9bc840c51a651b7b5413f0b17"
+    },
+    "raw_samples": {
+      "artifact_id": "v20/graph-audit-pinned-02/raw.csv",
+      "sha256": "fe6219e3f468cce716114ee17fb10329f157678988d4f3499ac283325c73367c"
+    }
+  },
+  "validation": {
+    "cuda": "21 passed",
+    "cpu": "17 passed, 4 skipped"
+  },
+  "availability": "Raw reports and weights remain local; artifact IDs are logical relative identifiers, not download URLs."
+}
