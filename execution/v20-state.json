@@ -11,6 +11,16 @@
   },
   "branch": "feat/v20-systems-research",
   "remote_pushed": false,
+  "remote_published": true,
+  "publication": {
+    "status": "PUBLISHED",
+    "transport": "GitHub connector",
+    "branch": "main",
+    "source_snapshot": "efbbd0ee921cf4b02150d0e4ed97aca9a0fef86f",
+    "published_code_commit": "60bd41860da57d821c2523c5468036afc0e10d40",
+    "verified_tree_sha": "4ada02b283ec53cc1ca3a545decdb90f9627c7d6",
+    "raw_artifacts_uploaded": false
+  },
   "phases": [
     {
       "phase": 0,
