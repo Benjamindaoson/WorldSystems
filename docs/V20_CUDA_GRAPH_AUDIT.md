@@ -1,6 +1,6 @@
 # Full RSSM graph audit — GPU_VERIFIED, exploratory performance
 
-**Hardware:** rented NVIDIA RTX 4090 24GB GPU instance (V2.0 audit). Earlier V1.1/V1.2 Windows GTX 1650 diagnostics are separate historical runs.
+**Hardware:** rented NVIDIA RTX 4090 24GB GPU instance (V2.0 audit). Earlier V1.1/V1.2 local Windows diagnostics are separate historical runs.
 
 Command: `.venv-cuda/Scripts/python.exe scripts/audit_graph_v20.py --output results/v20/graph-audit-pinned-02 --runs 100`.
 Checkpoint `da5238546a46e6e763efd8c07fef0fcbb6c55fb6461681407ee3e5d5ed348f57`; source revision `815387b5cbb0fcc39a258cafd39550d42b777f79`; dataset manifest `83576fe2cf07df02f7df318f4d9fb5089e2f8f17270d0b50e121d16ba01b874d`.
