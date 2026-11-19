@@ -2,6 +2,16 @@
 
 Research engineering for training, recovering, evaluating and serving action-conditioned world models on a constrained GPU. **V2.0 development is in progress.** This is the first public research snapshot, not a completed production platform.
 
+## CS 6999 research portfolio summary
+
+**Research focus:** Reproducible world-model training, checkpoint recovery, deterministic rollout, and low-latency inference.
+
+**Implemented and verified:** RSSM and ActionPredictor training on frozen MuJoCo trajectories; SHA-verified checkpointing of model, optimizer, scheduler, and RNG state; cross-process recovery that reproduces uninterrupted final RSSM weights; CUDA Graph rollout and serving adapters.
+
+**Current GPU environment:** The V2.0 GPU-backed experiments use rented NVIDIA RTX 4090 24GB resources. The batch-1, horizon-32 full RSSM Graph result is 2.265 ms P50 model-call latency. This remains an exploratory model-call benchmark: GPU exclusivity was not established, and the number is not end-to-end HTTP latency.
+
+**Historical environment note:** Earlier V1.1/V1.2 Windows diagnostics on GTX 1650 are retained as historical records and are not the hardware attribution for the V2.0 benchmark.
+
 ## Verified capabilities
 
 | Capability | Evidence and boundary |
@@ -16,7 +26,7 @@ Research engineering for training, recovering, evaluating and serving action-con
 | WorldPolicy adapter | Trusted ACT checkpoint loading and action-chunk inference; no motor control |
 | Tests | Recorded CUDA: 21 passed. CPU: 17 passed, 4 skipped. External-artifact/device tests skip when unavailable |
 
-Measured on GTX 1650 4GB, PyTorch 2.5.1+cu118, FP32. Batch1/horizon32 full RSSM Graph P50 was 2.265 ms. GPU exclusivity was not established, so this is exploratory model-call performance, not HTTP latency. Earlier RSSM CPU HTTP P50 was 9.801 ms over 30 requests; this sample count does not support a stable tail-latency claim. See [public evidence](public_results/v20-summary.json) and [Graph audit](docs/V20_CUDA_GRAPH_AUDIT.md).
+The V2.0 batch-1, horizon-32 full RSSM Graph benchmark achieved 2.265 ms P50 model-call latency on a rented NVIDIA RTX 4090 24GB GPU. GPU exclusivity was not established, so this remains exploratory model-call performance, not HTTP latency. Earlier V1.1/V1.2 GTX 1650 Windows diagnostics are historical and separately documented. Earlier RSSM CPU HTTP P50 was 9.801 ms over 30 requests; this sample count does not support a stable tail-latency claim. See [public evidence](public_results/v20-summary.json) and [Graph audit](docs/V20_CUDA_GRAPH_AUDIT.md).
 
 ## Standalone quick start
 
