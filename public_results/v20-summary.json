@@ -187,7 +187,9 @@
     "raw_samples": {
       "artifact_id": "v20/graph-audit-pinned-02/raw.csv",
       "sha256": "fe6219e3f468cce716114ee17fb10329f157678988d4f3499ac283325c73367c"
-    }
+    },
+    "hardware": "NVIDIA RTX 4090 24GB (rented GPU instance)",
+    "hardware_scope": "V2.0 CUDA Graph benchmark; older V1.1/V1.2 local diagnostic records are separate historical runs."
   },
   "validation": {
     "cuda": "21 passed",
